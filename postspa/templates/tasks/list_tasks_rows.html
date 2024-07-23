@@ -1,0 +1,30 @@
+<div id="tasks-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Category</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody hx-target="closest tr" hx-swap="outerHTML swap:1s">
+            {% for task in tasks %}
+            <tr>
+                <td>
+                    <input type="checkbox" class="task-completed-checkbox"
+                        hx-post="{% url 'toggle_task_completed' task_id=task.pk %}" hx-target="#tasks-container"
+                        hx-swap="outerHTML" {% if task.completed %}checked{% endif %} hx-trigger="change">
+                    <span class="task-checkbox {% if task.completed %}completed{% endif %}">{{ task.title }}</span>
+                </td>
+                <td>{{ task.category.name }}</td>
+                <td>
+                    <button class="delete-btn" hx-delete="{% url 'delete_task' task_id=task.pk %}"
+                        hx-confirm="Are you sure?">
+                        <i class="lni lni-trash-can"></i>
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

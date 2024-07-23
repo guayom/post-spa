@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+.wrapper {
+    max-width: 500px;
+    margin: 0 auto;
+    border-radius: 20px;
+    padding: 1em;
+    border: solid 1px #ddd;
+    background-color: #f5f5f5;
+}
+
+input[type="text"], input[type="search"], input[type="submit"], select {
+    padding: 1em;
+    border-radius: 5px;
+    border: solid 1px #ddd;
+}
+
+input[type="search"] {
+    margin-bottom: 1em;
+    width: 100%;
+}
+
+table {
+    margin-bottom: 1em;
+}
+
+th {
+    text-align: left;
+}
+
+td, th {
+    padding-bottom: 10px;
+}
+
+td:first-of-type {
+    width: 350px;
+}
+
+form {
+    display: flex;
+    column-gap: 10px;
+}
+
+input[type="text"] {
+    flex:1;
+}
+
+input[type="submit"] {
+    width: 150px;
+}
+
+tr.htmx-swapping td {
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+
+.delete-btn {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.htmx-indicator {
+    display: none;
+}
+
+.htmx-indicator.htmx-request{
+    display: block;
+}
+
