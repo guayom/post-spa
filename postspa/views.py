@@ -10,23 +10,18 @@ from .models import Category, Task
 def list_tasks(request):
     tasks = Task.objects.all().order_by("completed", "id")
     categories = Category.objects.all()
+    query = request.GET.get("query", "")
 
-    if request.method == "POST" and request.headers.get("Hx-Trigger-Name") == "query":
-        query = request.POST.get("query", "")
-        if query is not None:
-            tasks = tasks.filter(title__icontains=query)
+    if query is not None:
+        tasks = tasks.filter(title__icontains=query)
 
+    if request.headers.get("Hx-Trigger-Name") == "query":
         return render(
             request,
             "tasks/list_tasks_rows.html",
             {"tasks": tasks, "categories": categories},
         )
     else:
-        query = request.GET.get("query", "")
-
-        if query is not None:
-            tasks = tasks.filter(title__icontains=query)
-
         return render(
             request,
             "tasks/list_tasks.html",
